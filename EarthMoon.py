@@ -7,7 +7,7 @@ import matplotlib.animation as animation
 # Constants
 G = 6.67408e-11
 massEarth = 5.972e24
-massMoon = massEarth #7.348e22
+massMoon = 7.348e22
 
 # Function for Euler integration
 def eulerIntegrate(position, velocity, dt):
@@ -103,7 +103,7 @@ anim = animation.FuncAnimation(fig, animate, init_func=init, frames=10000, inter
 # Show the animation
 plt.show()
 
-
+# How fast do you think the moon is going around the earth?
 # What happens if you change the time step?
 # Why does the earth look slightly off center? Is the center of mass at the origin?
 # Why do you need smaller time steps for elliptical orbits?
