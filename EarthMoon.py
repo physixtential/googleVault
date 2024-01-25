@@ -9,10 +9,6 @@ G = 6.67408e-11
 massEarth = 5.972e24
 massMoon = 7.348e22
 
-# Zero momentum frame
-# Earth velocity = -moon mass / (earth mass + moon mass) * moon velocity
-# Earth velocity = -7.348e22 / (5.972e24 + 7.348e22) * 1022
-
 # Function for Euler integration
 def eulerIntegrate(position, velocity, dt):
     return position + velocity * dt
@@ -33,7 +29,10 @@ earthVelocity = np.array([0.0, -12.42]) # Orbital velocity of earth in m/s
 moonVelocity = np.array([0.0, 1022.0]) # Orbital velocity of moon in m/s
 
 # Set the time step for integration
-dt = 300000.0 # 100 seconds
+dt = 2*24*60*60 # seconds
+
+# Orbital period of the moon in seconds
+# 27.322*24*60*60
 
 # Lists to store positions for plotting
 earthPositionList = []
@@ -95,7 +94,7 @@ def animate(i):
     return line, line2, trail, trail2
 
 # Create animation
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=10000, interval=10, blit=True)
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=10000, interval=100, blit=True)
 
 # Show the animation
 plt.show()
