@@ -47,7 +47,7 @@ for i in range(0, 10000):
     # Calculate the gravitational force on the earth
     earthForce = gravitationalForce(earthPosition, moonPosition, massEarth, massMoon)
 
-    # Calculate the gravitational force on the moon
+    # Equal and opposite force on the moon
     moonForce = -earthForce
 
     # Update the earth's velocity
