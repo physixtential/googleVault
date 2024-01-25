@@ -106,8 +106,6 @@ plt.show()
 
 # What happens if you change the time step?
 # Why does the earth look slightly off center? Is the center of mass at the origin?
-# Why do you need smaller time steps for elliptical orbits?
-# What happens if you change the mass of the moon?
-# What happens if you change the distance between the earth and the moon?
-# What happens if you change the velocity of the moon?
-
+# Why do you need smaller time steps for elliptical orbits? How many points do you need to describe a line? A triangle? A circle? More detail/curvature demands smaller discrete increments.
+# What happens if you make the moon as massive as the earth?
+# What happens if you put them closer together?
