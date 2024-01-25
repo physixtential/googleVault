@@ -7,7 +7,7 @@ import matplotlib.animation as animation
 # Constants
 G = 6.67408e-11
 massEarth = 5.972e24
-massMoon = 7.348e22
+massMoon = massEarth #7.348e22
 
 # Function for Euler integration
 def eulerIntegrate(position, velocity, dt):
@@ -22,14 +22,18 @@ def gravitationalForce(position1, position2, mass1, mass2):
 
 # Earth and moon position vectors
 earthPosition = np.array([0.0, 0.0]) 
-moonPosition = np.array([384.4e6, 0.0]) # Distance from earth to moon in m
+moonPosition = np.array([405e6, 0.0]) # Moon farthest from earth in m
+
+# Zero momentum frame 0 = m1*v1 + m2*v2
+# m1*v1 = -m2*v2
+# v1 = -m2*v2/m1
 
 # Earth and moon velocity vectors
-earthVelocity = np.array([0.0, -12.42]) # Orbital velocity of earth in m/s
-moonVelocity = np.array([0.0, 1022.0]) # Orbital velocity of moon in m/s
+moonVelocity = np.array([0.0, 500.0]) # Orbital velocity of moon in m/s
+earthVelocity = -massMoon*moonVelocity/massEarth
 
 # Set the time step for integration
-dt = 2*24*60*60 # seconds
+dt = .01*24*60*60 # seconds
 
 # Orbital period of the moon in seconds
 # 27.322*24*60*60
@@ -44,7 +48,7 @@ for i in range(0, 10000):
     earthForce = gravitationalForce(earthPosition, moonPosition, massEarth, massMoon)
 
     # Calculate the gravitational force on the moon
-    moonForce = gravitationalForce(moonPosition, earthPosition, massMoon, massEarth)
+    moonForce = -earthForce
 
     # Update the earth's velocity
     earthVelocity = earthVelocity + earthForce / massEarth * dt
@@ -94,7 +98,16 @@ def animate(i):
     return line, line2, trail, trail2
 
 # Create animation
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=10000, interval=100, blit=True)
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=10000, interval=1, blit=True)
 
 # Show the animation
 plt.show()
+
+
+# What happens if you change the time step?
+# Why does the earth look slightly off center? Is the center of mass at the origin?
+# Why do you need smaller time steps for elliptical orbits?
+# What happens if you change the mass of the moon?
+# What happens if you change the distance between the earth and the moon?
+# What happens if you change the velocity of the moon?
+
